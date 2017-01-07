@@ -41,12 +41,23 @@
                             + "<% for (var i=0; i<datasets.length; i++){%>"
                             + "<li><span style=\"background-color:<%=datasets[i].fillColor%>;border-color:<%=datasets[i].strokeColor%>\"></span>"
                             + "<%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%>"
-                            + "</ul>"
+                            + "</ul>",
+                        responsive: true,
+                        maintainAspectRatio: false
                     };
 
                     // Draw the chart / Create Bar Chart
                     var ctx = $('#' + canvasId).get(0).getContext("2d");
-                    var socialChart = new Chart(ctx).Bar(chartData, options);
+                    //var socialChart = new Chart(ctx).Bar(chartData, options);
+                    Chart.defaults.global.elements.responsive = true;
+                    Chart.defaults.global.elements.rectangle.borderWidth = 2;
+
+                    var socialChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: chartData,
+                        options: options
+                    });
+                    console.log("socialChart", chartData);
 
                     // Create legend
                     var legendHolder = document.createElement('div');

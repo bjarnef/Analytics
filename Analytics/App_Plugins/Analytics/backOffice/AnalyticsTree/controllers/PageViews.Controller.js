@@ -33,19 +33,27 @@
                         canvasHeight = canvas.clientHeight;
 
                     // Replace the chart canvas element
-                    $('#' + canvasId).replaceWith('<canvas id="' + canvasId + '" width="' + canvasWidth + '" height="' + canvasHeight + '"></canvas>');
+                    //$('#' + canvasId).replaceWith('<canvas id="' + canvasId + '" width="' + canvasWidth + '" height="' + canvasHeight + '"></canvas>');
                     
                     var options = {
                         labelTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\">"
                             + "<% for (var i=0; i<datasets.length; i++){%>"
                             + "<li><span style=\"background-color:<%=datasets[i].fillColor%>;border-color:<%=datasets[i].strokeColor%>\"></span>"
                             + "<%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%>"
-                            + "</ul>"
+                            + "</ul>",
+                        responsive: true,
+                        maintainAspectRatio: false
                     };
 
                     // Draw the chart / Create Line Chart
                     var ctx = $('#' + canvasId).get(0).getContext("2d");
-                    var viewMonthsChart = new Chart(ctx).Line(chartData, options);
+                    //var viewMonthsChart = new Chart(ctx).Line(chartData, options);
+                    var viewMonthsChart = new Chart(ctx, {
+                        type: 'line',
+                        data: chartData,
+                        options: options
+                    });
+                    console.log("chartData", chartData);
 
                     // Create legend
                     var legendHolder = document.createElement('div');

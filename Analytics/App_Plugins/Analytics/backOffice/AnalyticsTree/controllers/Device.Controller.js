@@ -48,7 +48,12 @@
 
                     // Draw the chart / Create Bar Chart
                     var ctx = $('#' + canvasId).get(0).getContext("2d");
-                    var devicetypeChart = new Chart(ctx).Bar(chartData, options);
+                    //var devicetypeChart = new Chart(ctx).Bar(chartData, options);
+                    var devicetypeChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: chartData,
+                        options: options
+                    });
 
                     // Create legend
                     var legendHolder = document.createElement('div');

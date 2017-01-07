@@ -49,7 +49,12 @@
 
                     // Draw the chart / Create Line Chart
                     var ctx = $('#' + canvasId).get(0).getContext("2d");
-                    var viewProductPerformanceChart = new Chart(ctx).Line(chartData, options);
+                    //var viewProductPerformanceChart = new Chart(ctx).Line(chartData, options);
+                    var viewProductPerformanceChart = new Chart(ctx, {
+                        type: 'line',
+                        data: chartData,
+                        options: options
+                    });
 
                     // Create legend
                     var legendHolder = document.createElement('div');
