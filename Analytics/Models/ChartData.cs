@@ -9,11 +9,13 @@ namespace Analytics.Models
                     labels: ["Desktop", "Mobile", "Tablet"],
                     datasets: [
                         {
+                            label: "Visits",
                             fillColor: "rgba(245,112, 32,0.5)",
                             strokeColor: "rgba(245, 112, 32, 1)",
                             data: [87736, 2880, 2057]
                         },
                         {
+                            label: "Page Views",
                             fillColor: "rgba(245,112, 32,0.5)",
                             strokeColor: "rgba(245, 112, 32, 1)",
                             data: [236897, 5711, 5623]
@@ -52,31 +54,34 @@ namespace Analytics.Models
 
     public class ChartDataSet
     {
-        public string fillColor { get; set; }
+        public string label { get; set; }
 
-        public string strokeColor { get; set; }
+        public string backgroundColor { get; set; }
 
-        public string highlightFill { get; set; }
+        public string borderColor { get; set; }
 
-        public string highlightStroke { get; set; }
+        public string hoverBackgroundColor { get; set; }
+
+        public string hoverBorderColor { get; set; }
 
         public object[] data { get; set; }
     }
 
     public class LineChartDataSet
     {
+        public string label { get; set; }
 
-        public string fillColor { get; set; }
+        public string backgroundColor { get; set; }
 
-        public string strokeColor { get; set; }
+        public string borderColor { get; set; }
 
-        public string pointColor { get; set; }
+        public string pointBackgroundColor { get; set; }
 
-        public string pointStrokeColor { get; set; }
+        public string pointBorderColor { get; set; }
 
-        public string pointHighlightFill { get; set; }
+        public string pointHoverBackgroundColor { get; set; }
 
-        public string pointHighlightStroke { get; set; }
+        public string pointHoverBorderColor { get; set; }
 
         public object[] data { get; set; }
     }

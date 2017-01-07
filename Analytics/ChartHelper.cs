@@ -25,13 +25,13 @@ namespace Analytics
             // Add a dataset for each metric
             for (int metric = 0; metric < metrics; metric++)
             {
-
                 // Initialize the data object
                 ChartDataSet ds = cd.datasets[metric] = new ChartDataSet();
-                ds.fillColor    = GetFillColor(metric);
-                ds.strokeColor  = GetStrokeColor(metric);
-                ds.highlightFill = GetHighlightFillColor(metric);
-                ds.highlightStroke = GetHighlightStrokeColor(metric);
+                ds.label = GetLabel(metric);
+                ds.backgroundColor    = GetBackgroundColor(metric);
+                ds.borderColor  = GetBorderColor(metric);
+                ds.hoverBackgroundColor = GetHoverBackgroundColor(metric);
+                ds.hoverBorderColor = GetHoverBorderColor(metric);
                 ds.data         = new object[apiResults.Rows.Length];
 
                 for (int row = 0; row < apiResults.Rows.Length; row++)
@@ -84,14 +84,15 @@ namespace Analytics
             {
 
                 // Initialize the data object
-                LineChartDataSet ds = cd.datasets[metric] = new LineChartDataSet();
-                ds.fillColor        = GetFillColor(metric);
-                ds.strokeColor      = GetStrokeColor(metric);
-                ds.pointColor       = GetFillColor(metric);
-                ds.pointStrokeColor = GetStrokeColor(metric);
-                ds.pointHighlightFill = GetPointHighlightFillColor();
-                ds.pointHighlightStroke = GetPointHighlightStrokeColor(metric);
-                ds.data             = new object[apiResults.Rows.Length];
+                LineChartDataSet ds             = cd.datasets[metric] = new LineChartDataSet();
+                ds.label                        = GetLabel(metric);
+                ds.backgroundColor              = GetBackgroundColor(metric);
+                ds.borderColor                  = GetBorderColor(metric);
+                ds.pointBackgroundColor         = GetBackgroundColor(metric);
+                ds.pointBorderColor             = GetBorderColor(metric);
+                ds.pointHoverBackgroundColor    = GetPointHoverBackgroundColor();
+                ds.pointHoverBorderColor        = GetPointHoverBorderColor(metric);
+                ds.data                         = new object[apiResults.Rows.Length];
 
                 for (int row = 0; row < apiResults.Rows.Length; row++)
                 {
@@ -137,32 +138,37 @@ namespace Analytics
             return geoChartData;
         }
 
-        public static string GetFillColor(int pos)
+        private static string GetLabel(int pos)
+        {
+            return pos % 2 == 0 ? "Visits" : "Page Views";
+        }
+
+        public static string GetBackgroundColor(int pos)
         {
             return pos % 2 == 0 ? "rgba(245, 112, 32, 0.5)" : "rgba(151, 187, 205, 0.5)";
         }
 
-        public static string GetStrokeColor(int pos)
+        public static string GetBorderColor(int pos)
         {
             return pos % 2 == 0 ? "rgba(245, 112, 32, 0.8)" : "rgba(151, 187, 205, 0.8)";
         }
 
-        public static string GetHighlightFillColor(int pos)
+        public static string GetHoverBackgroundColor(int pos)
         {
             return pos % 2 == 0 ? "rgba(245, 112, 32, 0.75)" : "rgba(151, 187, 205, 0.75)";
         }
 
-        public static string GetHighlightStrokeColor(int pos)
+        public static string GetHoverBorderColor(int pos)
         {
             return pos % 2 == 0 ? "rgba(245, 112, 32, 1)" : "rgba(151, 187, 205, 1)";
         }
 
-        public static string GetPointHighlightFillColor()
+        public static string GetPointHoverBackgroundColor()
         {
             return "#fff";
         }
 
-        public static string GetPointHighlightStrokeColor(int pos)
+        public static string GetPointHoverBorderColor(int pos)
         {
             return pos % 2 == 0 ? "rgba(245, 112, 32, 1)" : "rgba(151, 187, 205, 1)";
         }
